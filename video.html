@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>video</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+	
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	
+  
+	
+	<style type="text/css">
+		*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body{
+		margin: 0px;
+		padding: 0px;
+		margin-left: auto;
+		margin-right: auto;
+		overflow-x:hidden;
+		height: 2500px;
+	}
+	header{
+		position: fixed;
+		width: 100%;
+		z-index: 100;
+		height: 50px;
+	}
+	.logo{
+		position: fixed;
+		left: 0;
+		z-index: 1000;
+		margin-left: 2em;
+		margin-top: 1.5em;
+		cursor: pointer;
+	}
+	.menu-btn{
+		position: fixed;
+		right: 0;
+		z-index: 1000;
+		margin-right: 2em;
+		margin-top: 1em;
+	}
+	input#menu{
+		display: none;
+	}
+	.overlay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all ease 0.5s;
+    background-image: url(image/menu_bg.png);
+	background-size: cover;
+	}
+	.overlay ul li{
+		display: inline-block;
+		width: 100%;
+	}
+	.overlay ul li a{
+		display: block;
+		width: 100%;
+		color: #FFF;
+		text-decoration: none;
+		font-size: 28px;
+		padding: 25px 0;
+		text-align: center;
+		text-transform: uppercase;
+		transition: all ease 0.5s; 
+	}
+	.overlay ul li a:hover{
+		color: rgba(229,38,42,1.00);	
+	}
+	input[type="checkbox"]:checked ~ .overlay{
+		opacity: 1;
+		transform: scale(1) translateX(0px); 
+	}
+		
+
+	.btn{
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		top:0;
+		right:0;
+		cursor: pointer;
+		z-index: 100;
+		transition: .5s;
+	}
+	.btn span{
+		position: absolute;
+		display: block;
+		height: 4px;
+		background: #9d9d9d;
+		width: 60%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		transition: .5s;
+	}
+	.btn span:nth-child(1){
+		top:30%;
+	}
+	.btn span:nth-child(3){
+		top:70%;
+	}
+	.btn.active span:nth-child(1){
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%) rotate(45deg);
+		background: rgba(229,38,42,1.00);
+	}
+	.btn.active span:nth-child(3){
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%) rotate(-45deg);
+		background: rgba(229,38,42,1.00);
+	}
+	.btn.active span:nth-child(2){
+	    opacity: 0;
+	}
+	.contact{
+		margin-top: 3em;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.contact img{
+		margin-left: 2em;
+		margin-right: 2em;
+		opacity: .5;
+		transition: .5s ease;
+		
+	}
+	.contact a:hover img{	
+		opacity: 1;
+		transform: scale(1.1);
+	}
+	   section{
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	section img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+	section::before{
+		content: '';
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 100px;
+		z-index: 5;
+	}
+	section::after{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100px;
+		z-index: 5;
+	}
+		#block{
+			z-index: 2
+		}
+		#forest4{
+			z-index: 3;
+		}
+		
+		.box{
+			position: absolute;
+			top: 90%;
+            left: 50%;
+			transform: translate(-50% -50%);
+			z-index: 6;
+	    }
+		.box span{
+			display: block;
+			width: 15px;
+			height: 15px;
+			border-bottom: 3px solid #fff;
+			border-right: 3px solid #fff;
+			transform: rotate(45deg);
+			animation: animate 2s infinite;
+			margin: -10px;
+		}
+		.box span:nth-child(2){
+			animation-delay: -0.2s;
+		}
+		.box span:nth-child(3){
+			animation-delay: -0.4s;
+		}
+		@keyframes animate
+		{
+			0%
+			{
+			   opacity: 0;
+			   transform: rotate(45deg) translate(-10px,-10px)   
+			}
+			50%
+			{
+			   opacity: 1;
+			}
+			100%
+			{
+			   opacity: 0;	
+			   transform: rotate(45deg) translate(10px,10px)
+			}
+		}
+		.scroll-text{
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                top: 85%;
+                z-index: 6;
+                font-size: 15px;
+                font-family: Arial;
+                color: #FFF;
+                font-style: normal;
+		}
+		#container{
+		text-align: center;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		padding-bottom: 0px;
+		margin-bottom: 0px;
+	}
+		.content{
+		display: inline-flex;
+		justify-content: center;
+		width: 1000px;
+		height: 500px;
+		flex-wrap: nowrap;
+	}
+		.intro-title{
+		text-align: center;
+		line-height: 25px;
+		margin-top: 7em;
+		margin-bottom: 5em;
+	}
+	.heading{
+		font-size: 25px;
+		margin-top: 30px;
+		margin-left: 30px;
+	}
+	h2{
+        font-family: "Microsoft JhengHei";
+        font-size: 50px;
+        color:#229f9d;
+        font-style: normal;
+	}
+	h3{
+		font-family: "arial";
+        font-size: 14px;
+        color: #229f9d;
+        font-weight: 700;
+        font-style: normal;
+		letter-spacing: 5px;
+	}
+	
+	.para1{
+		font-size: 15px;
+		font-family: "Microsoft JhengHei";
+		line-height: 25px;
+		margin-left: 0px;
+		margin-top: 15px;
+		margin-bottom: 0px;
+		color: #666666;
+		text-align: justify;
+	}
+			
+	h4{
+        font-family: "Microsoft JhengHei";
+        font-size: 25px;
+        margin: 30px;
+		color: #229f9d;
+    }
+* { box-sizing: border-box; }
+
+
+.carousel {
+	z-index: 99;
+	height: 250px;
+	margin-bottom: 100px;
+}
+
+.carousel-cell {
+            width: 398.43px;
+            height: 230px;
+            margin-right: 5px;
+            background: #8C8;
+            border-radius: 5px;
+            counter-increment: carousel-cell;
+            display: inline-block;
+	        overflow: hidden;
+	        transition: 0.3s;
+	        position: relative;
+		    z-index: 1;
+}
+		.carousel-cell:hover{
+			z-index: 2;
+	        transform: scale(1.1);
+		    box-shadow: 0 25px 40px rgba(0,0,0,.5);
+        	cursor: pointer;
+	        position: relative
+		}
+		.flickity-viewport{
+			overflow: visible;
+		}
+		.carousel-cell img{
+			height: 230px;
+			width: 100%;
+			position: absolute;
+			top:0;
+			left: 0;
+			object-fit: cover;
+			display: block;
+			
+		}
+
+        .carousel-cell.is-selected {
+             background: #ED2;
+}
+        .carousel-cell:before {
+            display: block;
+            text-align: center;
+            content: counter(carousel-cell);
+            line-height: 200px;
+            font-size: 80px;
+            color: white;
+            opacity: 0.5;
+}
+		.title2{
+			margin-top: 30px;
+		}
+		.title3{
+			margin: 30px;
+		}
+		.flickity-prev-next-button.next{
+			z-index: 1000;
+			position: absolute;
+			display: block;
+		}
+		
+	   .videowidth {
+		   width: 1200px; cursor: pointer; 
+		   margin-top: 5px; 
+		   margin-left: 100px;
+		}
+		 .videowidth2{
+		   width: 1200px; cursor: pointer; 
+		   margin-top: 8px; 
+		   margin-right: 100px;
+		}
+	   video{
+		   width: 100%;
+		   position: relative;
+		   z-index: 99;
+		}
+		.bk_intro{
+	    	margin: 0px;
+			padding: 0px;
+			width: 450px;
+		}
+		h1{
+			font-size: 50px;
+			font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+			margin: 0px;
+			padding: 0px;
+			text-align: left;
+			color: #229f9d;
+			line-height: 55px;
+		}
+		h6{
+			font-size: 15px;
+			font-family: "Microsoft JhengHei"
+			margin: 0px;
+			margin-top: 15px;
+			padding: 0px;
+			text-align: left;
+			color: #229f9d;
+		}
+		button{
+             width: 105px;
+             margin-left: 0px;
+             margin-right: 5px;
+             padding: 7px 10px 7px 10px;
+			 border: none;
+           
+		}
+		.play{
+			  float: left;
+			  background-color: #229f9d;
+             display: inline-block;
+			 text-decoration: none;	
+			 color: #FFF;
+			 cursor: pointer;
+		}
+	
+		
+		.play:hover{
+		    
+			z-index: 2;
+	        transform: scale(1.05);
+		     transition: 0.3s;
+        	cursor: pointer;
+	        position: relative
+		}
+		.share:hover{
+		    
+			z-index: 2;
+	        transform: scale(1.05);
+		     transition: 0.3s;
+        	cursor: pointer;
+	        position: relative
+		}
+		.share{
+			margin-left: 0px;
+			width: 105px;
+			background-color:#d6a87b;
+			display: inline-block;
+			text-decoration: none;	
+			 color: #FFF;
+		}
+		.function{
+			padding-top: 20px;
+			padding-left: 0px;
+			margin-left: 0px;
+		}
+		.tri{
+			margin-right: 2px;
+		}
+		.sh{
+			margin-right: 2px;
+			margin-top: 2px;
+		}
+		.footer{
+		margin-top: 0px;
+		width: 100%;
+		height: 185px;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+			padding-top: 50px;
+		background: #605e60;
+		padding-bottom: 70px;
+		color: #FFF;
+	}
+	.ft{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	}
+	.border{
+		border-right: 1px solid #FFF;
+	}
+		.para4{
+			margin-bottom: 30px;
+		}
+	
+		
+		
+	</style>
+	
+		<script src="https://code.jquery.com/jquery-3.5.1.js">
+	</script>
+	
+<script type="text/javascript">
+       $(document).ready(function(){
+    $('.btn').click(function(){
+	   $('.btn').toggleClass('active');
+	})
+  })
+	
+</script>
+	
+	
+	
+	
+	
+</head>
+
+<body>
+	
+  <header>
+	<div class="logo"> <a href="home.html"><img src="image/logo.png" width="50"  alt=""/></a> </div>	
+	
+	<label for="menu" class="menu-btn">
+	       <div class="btn"> 
+		       <span></span>
+			   <span></span>
+			   <span></span>
+		
+		  </div>
+	
+		</label>
+	
+	<input type="checkbox" id="menu" name="">
+		
+		<div class="overlay">
+		    <ul>
+			    <li><a href="home.html">首頁</a></li>
+				<li><a href="page2.html">為何反對</a></li>
+				<li><a href="video.html">相關影音</a></li>
+				<li><a href="countersign.html">募資計畫</a></li>
+			</ul>
+			<div class="contact">
+				<a href="#"><img src="image/ig.png" alt=""></a>
+			<a href="#"><img src="image/fb.png" alt=""></a>
+			<a href="#"><img src="image/twitter.png" alt=""></a>
+			</div>
+		</div>
+</header>
+	
+	<div class="box2">
+	<div class="scroll-text">
+	   <h5>SCROLL</h5>
+	</div>
+	</div>
+	
+	<div class="box">
+		
+	     <span></span>
+	     <span></span>
+	     <span></span>
+	</div>
+	
+	<section>
+	  <img src="image/bg3.png" id="bg3" alt="">
+	  <img src="image/sun2.png" id="sun2" alt="">
+	  <img src="image/iceberg.png" id="iceberg" alt="">
+	  <img src="image/boat.png" id="boat" alt="">
+	  <img src="image/whale.png" id="whale" alt="">
+  	  <img src="image/polar-bear.png" id="polarbear" alt="">
+	  <img src="image/wave.png" id="wave" alt="">
+	</section>
+	
+	<script type="text/javascript">
+	let bg = document.getElementById("bg3");
+	document.getElementById("sun2");
+    document.getElementById("iceberg");
+	document.getElementById("boat");
+	document.getElementById("whale");
+	document.getElementById("polar-bear");
+	
+    window.addEventListener('scroll',
+	function(){
+		var value = window.scrollY;
+		bg3.style.top = value *0.5 + 'px';
+		sun2.style.top = -value *0.15 + 'px';
+		iceberg.style.top = value *0.3 + 'px';
+		whale.style.left = -value *0.5 + 'px';
+        polarbear.style.left = value *0.5 + 'px';
+	    boat.style.top = value *0.15 + 'px';
+	})
+	</script>
+	
+	
+	<div id="container">
+		<div class="intro-title" data-aos="fade-up" data-aos-duration="500">
+		<h2>相關影音</h2><br>
+		<h3>RELATED VEDIOS</h3>
+	  </div>
+	
+	
+	
+		<div class="title2" data-aos="fade-left">
+		<h4>熱門選擇</h4>
+	   </div>
+	 
+      <div class="carousel" data-flickity='{ "groupCells": true, "autoPlay": true }' data-aos="fade-left">
+            
+		    <div class="carousel-cell">
+	           <img src="image/blackfish1.png" height="230"  alt=""/> 
+		  </div>
+		  
+		    <div class="carousel-cell">
+               <img src="image/zoo1.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/apes.png" height="230"  alt=""/> 
+		  </div>
+		   
+          <div class="carousel-cell">
+               <img src="image/jurassic.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/tarzan.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/dynasties.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/blueplanet.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/dominion.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/cow.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/nat.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/mada.png" height="230"  alt=""/> 
+		  </div>
+		  
+		  <div class="carousel-cell">
+               <img src="image/wild.png" height="230"  alt=""/> 
+		  </div>
+		  
+		
+		  
+          
+      </div>
+	
+
+	    	<div class="title3" data-aos="fade-right">
+		<h4>經典介紹</h4>
+	   </div>
+		
+		
+	  <div class="content">
+		
+		    
+	
+		<div class="bk_intro" data-aos="fade-right"> 
+          <h1>BLACK FISH</h1>
+		  
+		  <h6>2013/7/19 &nbsp;&nbsp;  1小時30分</h6>
+			
+			<p class="para1">
+			《黑鯨》揭露了海洋主題公園和水族館的殘酷事實，記錄名叫提利康的虎鯨，被迫與家人分離，在囚禁中長大，並在水上樂園做表演。提利康被剝奪了所有對他而言重要的事物，壓抑、孤獨使他逐漸地患上了精神失常的疾病，在大約三十年的囚禁生涯中造成了3人死亡。	
+			</p>
+			
+		  <div class="function"> 
+			  
+			<button class="play">
+			  <img class="tri" src="image/play.png" height="10" alt=""/> 播放完整</button>
+			
+			
+			<button class="share">
+				<img  class="sh" src="image/share.png" height="10" alt=""/> 分享轉發</button>
+			  
+		  </div>	
+			
+		</div>	
+			 
+           <div class="videowidth" data-aos="fade-left">
+             <video width="1000"  poster="image/blackfish1.png" >
+               <source src="blackfish_video.mp4" type="video/mp4">
+               <source src="Ablackfish_video.webm" type="video/webm">
+             </video>
+          </div>
+
+		
+		</div>
+		
+		
+		
+		
+		
+		<div class="content">
+ 
+           <div class="videowidth2" data-aos="fade-right">
+             <video >
+               <source src="zoo_video.mp4" type="video/mp4">
+               <source src="zoo_video.webm" type="video/webm">
+             </video>
+          </div>
+          
+		  <div class="bk_intro" data-aos="fade-left"> 
+          <h1>ZOO</h1>
+		  
+		  <h6>2013/7/19 &nbsp;&nbsp;  1小時30分</h6>
+			
+			<p class="para1">
+		故事描述全球各地發生動物暴力襲擊人類的事件，一名年輕科學家决心查出這些神秘事件背后的真相。 他必须抓紧時間，否则人類和動物很可能兩敗俱傷甚至一起滅绝。 
+			</p>
+			
+		  <div class="function"> 
+			  
+			<button class="play">
+			  <img class="tri" src="image/play.png" height="10" alt=""/> 播放完整</button>
+			
+			
+			<button class="share">
+				<img  class="sh" src="image/share.png" height="10" alt=""/> 分享轉發</button>
+			  
+		  </div>	
+			
+		</div>	
+		
+		</div>
+		
+		
+		
+		
+		
+		<div class="content">
+		
+		    
+	
+		<div class="bk_intro" data-aos="fade-right"> 
+          <h1>War for the Planet of the Apes</h1>
+		  
+		  <h6>2013/7/19 &nbsp;&nbsp;  1小時30分</h6>
+			
+				<p class="para1">
+		凱撒受到了人類無情的對待，繼而產生憎恨，誓言報復!一場不得不與人類對立的戰爭即將開始，浩劫的最後的勝負，將決定全世界生存的未來...!
+			</p>
+			
+		  <div class="function"> 
+			  
+			<button class="play">
+			  <img class="tri" src="image/play.png" height="10" alt=""/> 播放完整</button>
+			
+			
+			<button class="share">
+				<img  class="sh" src="image/share.png" height="10" alt=""/> 分享轉發</button>
+			  
+		  </div>	
+			
+		</div>	
+			 
+           <div class="videowidth" data-aos="fade-left">
+             <video width="1000" poster="image/apes.png" >
+               <source src="apes_video.mp4" type="video/mp4">
+               <source src="apes_video.webm" type="video/webm">
+             </video>
+          </div>
+
+		
+		</div>
+		
+			
+	<div class="footer">
+		  
+		  
+  <div class="para4">
+		  Copyright © 2020 - AGAINST ZOO
+	  </div>
+		  
+		  <table class="ft" width="700" border="0" align="center">
+  <tbody>
+    <tr>
+      <td class="border" width="165" style="text-align: center">關於我們</td>
+      <td class="border" width="165" style="text-align: center">隱私政策</td>
+      <td class="border" width="165" style="text-align: center">版權聲明</td>
+      <td  width="205" style="text-align: center">野生動物急救站</td>
+    </tr>
+  </tbody>
+</table>
+		  
+		  
+</div>
+
+		
+		
+	</div>	
+	
+	
+	
+	
+		
+		 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	//with class div
+	$(document).ready(function(){
+		$(".videowidth").hover(function(){
+			$(this).children("video")[0].play();
+		},
+		function(){
+		$(this).children("video")[0].pause();
+		});
+	});
+	// Without id and class div
+	/*$(document).ready(function(){
+		$("video").hover(function(){
+			$(this)[0].play();
+		},
+		function(){
+		$(this)[0].pause();
+		});
+	});*/
+	</script>
+
+		
+		
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	
+	  
+	
+	<script>
+  AOS.init();
+</script>
+	
+    
+	  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+	
+	
+	
+	
+	
+</body>
+</html>

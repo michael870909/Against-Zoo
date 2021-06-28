@@ -1,0 +1,860 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	
+  
+	
+	<style type="text/css">
+		*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body{
+		margin: 0px;
+		padding: 0px;
+		margin-left: auto;
+		margin-right: auto;
+		overflow-x:hidden;
+		height: 2500px;
+	}
+	header{
+		position: fixed;
+		width: 100%;
+		z-index: 100;
+		height: 50px;
+	}
+	.logo{
+		position: fixed;
+		left: 0;
+		z-index: 1000;
+		margin-left: 2em;
+		margin-top: 1.5em;
+		cursor: pointer;
+	}
+	.menu-btn{
+		position: fixed;
+		right: 0;
+		z-index: 1000;
+		margin-right: 2em;
+		margin-top: 1em;
+	}
+	input#menu{
+		display: none;
+	}
+	.overlay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all ease 0.5s;
+    background-image: url(image/menu_bg.png);
+	background-size: cover;
+	}
+	.overlay ul li{
+		display: inline-block;
+		width: 100%;
+	}
+	.overlay ul li a{
+		display: block;
+		width: 100%;
+		color: #FFF;
+		text-decoration: none;
+		font-size: 28px;
+		padding: 25px 0;
+		text-align: center;
+		text-transform: uppercase;
+		transition: all ease 0.5s; 
+	}
+	.overlay ul li a:hover{
+		color: rgba(229,38,42,1.00);	
+	}
+	input[type="checkbox"]:checked ~ .overlay{
+		opacity: 1;
+		transform: scale(1) translateX(0px); 
+	}
+		
+
+	.btn{
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		top:0;
+		right:0;
+		cursor: pointer;
+		z-index: 100;
+		transition: .5s;
+	}
+	.btn span{
+		position: absolute;
+		display: block;
+		height: 4px;
+		background: #9d9d9d;
+		width: 60%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		transition: .5s;
+	}
+	.btn span:nth-child(1){
+		top:30%;
+	}
+	.btn span:nth-child(3){
+		top:70%;
+	}
+	.btn.active span:nth-child(1){
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%) rotate(45deg);
+		background: rgba(229,38,42,1.00);
+	}
+	.btn.active span:nth-child(3){
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%) rotate(-45deg);
+		background: rgba(229,38,42,1.00);
+	}
+	.btn.active span:nth-child(2){
+	    opacity: 0;
+	}
+	.contact{
+		margin-top: 3em;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.contact img{
+		margin-left: 2em;
+		margin-right: 2em;
+		opacity: .5;
+		transition: .5s ease;
+		
+	}
+	.contact a:hover img{	
+		opacity: 1;
+		transform: scale(1.1);
+	}
+	   section{
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+	}
+	section img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+	section::before{
+		content: '';
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 100px;
+		z-index: 5;
+	}
+	section::after{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100px;
+		z-index: 5;
+	}
+			z-index: 2
+		}
+		#forest4{
+			z-index: 3;
+		}
+		#block2{
+			z-index: 5
+		}
+.skills{
+  width: 100%;
+  max-width: 1200px;
+  position:absolute;
+  top: 52%;
+  left: 50%;
+  z-index: 6;
+  margin-left:-600px; 
+}
+
+.skill-name{
+  color: #FFF;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 50px 0;
+  
+}
+
+.skill-bar{
+  height: 10px;
+  background: #cacaca;
+  border-radius: 5px;
+}
+
+.skill-per{
+  font-family: Arial;
+  height: 10px;
+  background-color: #66b9b4;
+  border-radius: 5px;
+  width: 0;
+  transition: 1s linear;
+  position: relative;
+}
+
+.skill-per::before{
+    content: attr(per);
+    position: absolute;
+    padding: 5px 7px;
+    color: #011c20;
+    font-size: 12px;
+    border-radius: 4px;
+    top: -35px;
+    right: 0;
+    transform: translateX(50%);
+    background-color: rgba(226,237,207,1.00);
+}
+
+.skill-per::after{
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(226,237,207,1.00);
+  top: -16px;
+  right: 0;
+  transform: translateX(50%) rotate(45deg);
+  border-radius: 2px;
+}
+		.right{
+			text-align: right;
+		
+		}
+		.middle{
+			text-align: center;
+			
+		}
+		.num{
+			color: #66b9b4;
+			font-size: 20px;
+			
+		}
+		.num_middle{
+			color: #66b9b4;
+			text-align: center;
+			font-size: 20px;
+			
+		}
+		.num_right{
+			color: #66b9b4;
+			text-align: right;
+			font-size: 20px;
+			
+		}
+		.donate{
+		float: right;
+			margin-top: 60px;
+		}
+		.donate_button{
+			text-align: center;
+			font-family: Arial;
+			color: #66b9b4;
+		    background:none;
+			border: 2px solid #66b9b4;
+			border-radius: 5px;
+			padding: 15px 30px;
+		}
+		.donate_button:hover{
+			background: rgba(226,237,207,1.00);
+			cursor: pointer;
+			border: 2px solid  rgba(226,237,207,1.00);
+			color: #011c20;
+		}
+		
+		.box{
+			position: absolute;
+			top: 90%;
+            left: 50%;
+			transform: translate(-50% -50%);
+			z-index: 6;
+		}
+		.box span{
+			display: block;
+			width: 15px;
+			height: 15px;
+			border-bottom: 3px solid #fff;
+			border-right: 3px solid #fff;
+			transform: rotate(45deg);
+			animation: animate 2s infinite;
+			margin: -10px;
+		}
+		.box span:nth-child(2){
+			animation-delay: -0.2s;
+		}
+		.box span:nth-child(3){
+			animation-delay: -0.4s;
+		}
+		@keyframes animate
+		{
+			0%
+			{
+			   opacity: 0;
+			   transform: rotate(45deg) translate(-10px,-10px)   
+			}
+			50%
+			{
+			   opacity: 1;
+			}
+			100%
+			{
+			   opacity: 0;	
+			   transform: rotate(45deg) translate(10px,10px)
+			}
+		}
+		.scroll-text{
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                top: 85%;
+                z-index: 6;
+                font-size: 15px;
+                font-family: Arial;
+                color: #FFF;
+                font-style: normal;
+		}
+		#container{
+		text-align: center;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		padding-bottom: 100px;
+			margin-bottom: 100px;
+			height: 3100px;
+	}
+		.content{
+		display: inline-flex;
+		justify-content: flex-start;
+		width: 1000px;
+		height: 500px;
+		flex-wrap: wrap;
+		
+	}
+		.intro-title{
+		text-align: center;
+		line-height: 25px;
+		margin-top: 7em;
+		margin-bottom: 5em;
+	}
+	h2{
+        font-family: "Microsoft JhengHei";
+        font-size: 50px;
+        color:#229f9d;
+        font-style: normal;
+	}
+	h3{
+		font-family: "arial";
+        font-size: 14px;
+        color: #229f9d;
+        font-weight: 700;
+        font-style: normal;
+		letter-spacing: 6px;
+	}
+	
+	.para1{
+		font-size: 15px;
+		font-family: "Microsoft JhengHei";
+		line-height: 25px;
+		margin-left: 0px;
+		margin-top: 20px;
+		margin-bottom: 0px;
+		color: #666666;
+		text-align: justify;
+	}
+		.para3{
+		font-size: 15px;
+		font-family: "Microsoft JhengHei";
+		line-height: 25px;
+		margin-left: 0px;
+		margin-top: 20px;
+		margin-bottom: 0px;
+		color: #666666;
+		text-align: justify;
+			text-align: center;
+	}	
+	h4{
+        font-family: "Microsoft JhengHei";
+        font-size: 25px;
+        margin: 0px;
+		color: #229f9d;
+    }
+		.videowidth { 
+			width: 1000px; cursor: pointer; 
+		}
+	video{
+		width: 100%;
+		}
+	.heading{
+		font-family: "Microsoft JhengHei";
+		font-size: 25px;
+		margin-top: 50px;
+		float: left;
+		margin-left: 0px;
+		color: #229f9d;
+		line-height: 40px;
+		text-align: left;
+	}	
+	
+	.problem{
+			font-family: "Microsoft JhengHei";
+		font-size: 25px;
+		margin-top: 100px;
+		float: left;
+		margin-left: 0px;
+		color: #229f9d;
+		line-height: 40px;
+		width: 100%;
+		text-align: left;
+	}
+		.name{
+			text-align: left;
+			font-family: "Microsoft JhengHei";
+			color:#229f9d;
+		    letter-spacing: 3px;
+			font-size: 15px;
+			margin-bottom: 0px;
+		}
+		.problem_card{
+			margin-top: 20px;
+			display: flex;
+			justify-content: center;
+			flex-wrap: nowrap;
+		}
+		.card{
+			width: 475px;
+			margin-top: 30px;
+			margin-left: 25px;
+			margin-right: 25px;
+		}
+		.help{
+			font-family: "Microsoft JhengHei";
+		font-size: 25px;
+		margin-top: 100px;
+		float: left;
+		margin-left: 0px;
+		color: #229f9d;
+		line-height: 40px;
+		text-align: left;
+		}
+		.help_card{
+			width: 1000px;
+		    margin-top: 20px;
+			display: flex;
+			justify-content: center;
+			flex-wrap: nowrap;
+		}
+		.help_fuction{
+			width: 300px;
+			margin-top: 30px;
+			margin-left: 25px;
+			margin-right: 25px;
+			text-align: center;
+		}
+			#footer{
+		margin-top: 50px;
+		width: 100%;
+		height: 100px;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		background: #605e60;
+		padding-top: 50px;
+		padding-bottom: 30px;
+		color: #FFF;
+	}
+	.para4{
+		margin-bottom: 30px;
+		
+	}
+	.ft{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	}
+	.border{
+		border-right: 1px solid #FFF;
+	}
+	
+	
+	
+	
+	</style>
+	
+		<script src="https://code.jquery.com/jquery-3.5.1.js">
+	</script>
+	
+<script type="text/javascript">
+       $(document).ready(function(){
+    $('.btn').click(function(){
+	   $('.btn').toggleClass('active');
+	})
+  })
+	
+</script>
+	
+	
+	
+	
+	
+</head>
+
+<body>
+  <header>
+	<div class="logo"> <a href="home.html"><img src="image/logo.png" width="50"  alt=""/></a> </div>	
+	
+	<label for="menu" class="menu-btn">
+	       <div class="btn"> 
+		       <span></span>
+			   <span></span>
+			   <span></span>
+		
+		  </div>
+	
+		</label>
+	
+	<input type="checkbox" id="menu" name="">
+		
+		<div class="overlay">
+		    <ul>
+			    <li><a href="home.html">首頁</a></li>
+				<li><a href="page2.html">為何反對</a></li>
+				<li><a href="video.html">相關影音</a></li>
+				<li><a href="countersign.html">募資計畫</a></li>
+			</ul>
+			<div class="contact">
+				<a href="#"><img src="image/ig.png" alt=""></a>
+			<a href="#"><img src="image/fb.png" alt=""></a>
+			<a href="#"><img src="image/twitter.png" alt=""></a>
+			</div>
+		</div>
+</header>
+	
+	<div class="box2">
+	<div class="scroll-text">
+	   <h5>LEARN MORE</h5>
+	</div>
+	</div>
+	
+	
+	
+	<div class="box">
+		
+	     <span></span>
+	     <span></span>
+	     <span></span>
+	</div>
+	
+	
+	<section>
+	  <img src="image/bg4.png" id="bg4" alt="">
+	  <img src="image/mt4.png" id="mt4" alt="">
+	  <img src="image/savethe.png" id="savethe" alt="">
+	  <img src="image/mt5.png" id="mt5" alt="">
+	  <img src="image/forest1.png" id="forest1" alt="">
+	  <img src="image/forest2.png" id="forest2" alt="">
+	  <img src="image/animals.png" id="animals" alt="">
+  	  <img src="image/forest3.png" id="forest3" alt="">
+	  <img src="image/block.png" id="block" alt="">
+	  <img src="image/forest4.png" id="forest4" alt="">
+	  <img src="image/block2.png" id="block2" alt="">
+	  <img src="image/bird2.png" id="bird2" alt="">
+	</section>
+	
+	<script type="text/javascript">
+	let bg = document.getElementById("bg4");
+	document.getElementById("mt4");
+    document.getElementById("savethe");
+	document.getElementById("mt5");
+	document.getElementById("forest1");
+	document.getElementById("forest2");
+	document.getElementById("animals");
+	document.getElementById("forest3");
+	document.getElementById("forest4");
+	document.getElementById("block");
+	
+    window.addEventListener('scroll',
+	function(){
+		var value = window.scrollY;
+		bg4.style.top = value *0.3 + 'px';
+		savethe.style.top = value *0.15 + 'px';
+		mt5.style.top = -value *0.3 + 'px';
+		forest1.style.top = -value *0.15 + 'px';
+		forest2.style.top = -value *0.2 + 'px';
+		animals.style.top = value *0.15 + 'px';
+        forest3.style.top = -value *0.3 + 'px';
+	    forest4.style.top = -value *0.6 + 'px';
+	    block.style.top = -value *0.3 + 'px';
+	})
+	</script>
+	
+	<div class="skills">
+	 <div class="skill">
+        <div class="skill-name">
+		    <table width="1200" border="0" cellspacing="0" cellpadding="０">
+  <tbody>
+    <tr>
+      <td width="240">RAISED</td>
+      <td class="middle" width="350">BACKERS</td>
+      <td class="middle" width="350">DAYS LEFT</td>
+      <td class="right" width="260">GOAL</td>
+    </tr>
+    <tr>
+      <td class="num" width="240">742,234</td>
+      <td class="num_middle" width="350">12322</td>
+      <td class="num_middle" width="350">15</td>
+      <td class="num_right" width="260">1,000,000</td>
+    </tr>
+  </tbody>
+</table>
+
+			
+			
+			
+		 </div>
+        <div class="skill-bar">
+          <div class="skill-per" per="73"></div>
+        </div>
+      </div>
+		
+		<div class="donate">
+	<button class="donate_button">
+	   <h5>DONATE NOW</h5>
+		</button>
+	</div>
+		
+		
+		
+	</div>
+   
+
+    <script>
+      $('.skill-per').each(function(){
+        var $this = $(this);
+        var per = $this.attr('per');
+        $this.css("width",per+'%');
+        $({animatedValue: 0}).animate({animatedValue: per},{
+          duration: 1000,
+          step: function(){
+            $this.attr('per', Math.floor(this.animatedValue) + '%');
+          },
+          complete: function(){
+            $this.attr('per', Math.floor(this.animatedValue) + '%');
+          }
+        });
+      });
+    </script>
+	
+	<div id="container">
+		
+		
+		
+		<div class="intro-title" data-aos="fade-up" data-aos-duration="500">
+		<h2>募資計畫</h2><br>
+		<h3>CROWDFUNDING</h3>
+	  </div>
+		
+		<div class="content">
+			
+		  <div class="videowidth" data-aos="fade-up">
+            <video width="1000" poster="image/project.png" controls="controls" >
+              <source src="re.mp4" type="video/mp4">
+              <source src="re.webm" type="video/webm">
+            </video>
+          </div>
+		  
+			
+		  <div class="heading"  data-aos="fade-right">
+			
+			落難動物的重生之路 — 野生動物救傷募資計畫
+			
+			  <h3 class="name">	
+			     By 窩窩wuowuo </h3>
+			
+			 <div class="para1">
+			 以募資野生動物救傷資金為計畫主軸，募資所得扣除成本後捐贈予野生動物急救站。結合插畫家Huyu的插畫力與窩窩媒體的傳播力，為落難動物發聲。不比犬貓議題受到社會的關心及資助，野生動物的救傷、醫療、收容、野放一直都處於資源匱乏的狀態，這一次，我們集結媒體與插畫師，希望透過傳播設計的力量，來替野生動物急救站募集救難資金！
+			 </div>
+		 
+		   </div>
+		
+			<div class="problem">
+			
+			<div class="problem_title" data-aos="fade-right">
+			<h4>面臨的困難</h4></div>
+			
+			<div class="problem_card">
+				
+				<div class="card" data-aos="fade-right">
+			    <img src="image/1.png" width="475" alt=""/>
+					<div class="para1" data-aos="fade-right">
+				除了每年六百隻的野生動物醫治外，站內目前仍有209隻受傷留院以及2000多隻動物收容著。保育意識抬頭，越來越多落難動物被送到急救站，但人員額編制仍然不足，平均每個人同時要照顧數十到數百隻的動物，是相當大的負荷。
+				
+				</div>
+				</div>
+				
+				
+				<div class="card" data-aos="fade-left">
+			    <img src="image/2.png" width="475"  alt=""/>
+					<div class="para1" data-aos="fade-left">
+					經統計，平均每隻動物的醫療救治費用為32,283元，又野生動物治療到訓練到野放的過程相當漫長，若以坊間動物醫院收費標準計算，光是醫療耗材與相關設備使用，就佔了整體經費的九成。</div>
+				</div>
+				
+			
+				
+				
+			</div>
+				
+				<div class="problem_card">
+			   	<div class="card" data-aos="fade-right">
+			    <img src="image/3.png" width="475"  alt=""/>
+						<div class="para1" data-aos="fade-right">
+					急救站最主要的經費來自政府的預算，但近年政府分配在「野生物保育」的經費僅有六千多萬，比起以往兩億八千萬的預算，整整少了兩億多元。但需要救助的野生動物數量還是很多，逐漸減少的經費，會影響野生動物救援的專業發展、救援的品質及醫療；亦導致救援單位面臨「人少錢少事多」的問題，必須靠一人身兼多職、自己找資源來彌補經費的缺口。</div>
+				</div>
+				
+				<div class="card" data-aos="fade-left">
+			    <img src="image/4.png" width="475"  alt=""/>
+						<div class="para1" data-aos="fade-left">
+					野生動物救援的工作，錢少事多，人員往往要超時工作才能妥善照顧動物。但升遷管道卻又不暢通，且急救站多以計劃形式約聘專員，導致人事流動率高。必須不斷重新訓練、培養團隊醫療默契。導致救傷經驗難以傳承，影響野生動物的醫療發展。 </div>
+				</div>
+			
+			</div>
+			
+			
+			</div>
+			
+			<div class="help" >
+			
+			<div class="help_title" data-aos="fade-right">
+			<h4 >我們需要你</h4></div>	
+				
+				<div class="help_card" >
+				  
+					<div class="help_fuction" >
+					  
+					 <div class="help_img" data-aos="fade-left">
+			        <img src="image/bag.png" width="200"  alt=""/> </div>
+				
+				    <div class="para3" data-aos="fade-left">
+					運輸龍、儀器、藥品等醫療設備採購 </div>
+				  </div>
+					
+					
+					
+					<div class="help_fuction">
+					  
+					 <div class="help_img" alt="" data-aos="fade-left">
+			        <img src="image/space.png" width="200" alt=""/> </div>
+				
+				    <div class="para3"  data-aos="fade-left">
+					空間、設備改善使收容品質提升 </div>
+				  </div>
+					
+					
+					
+					<div class="help_fuction">
+					  
+					 <div class="help_img"  data-aos="fade-left">
+			        <img src="image/hr.png" width="200"  alt=""/> </div>
+				
+				    <div class="para3"  data-aos="fade-left">
+					獸醫、醫療助理、解說員等專業人力補充 </div>
+				  </div>
+					
+	
+				</div>
+				
+			  </div>
+			  
+
+			
+		   </div>
+        
+	
+	</div>	
+	
+	
+	<div id="footer">
+		  
+		  
+  <div class="para4">
+		  Copyright © 2020 - AGAINST ZOO
+	  </div>
+		  
+		  <table class="ft" width="700" border="0" align="center" cellpadding="０" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="border" width="165" style="text-align: center">關於我們</td>
+      <td class="border" width="165" style="text-align: center">隱私政策</td>
+      <td class="border" width="165" style="text-align: center">版權聲明</td>
+      <td  width="205" style="text-align: center">野生動物急救站</td>
+    </tr>
+  </tbody>
+</table>
+		  
+		  
+</div>
+	
+	
+	
+	
+	
+	
+	
+	
+			 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
+   <script type="text/javascript">
+	//with class div
+	$(document).ready(function(){
+		$(".videowidth").hover(function(){
+			$(this).children("video")[0].play();
+		},
+		function(){
+		$(this).children("video")[0].pause();
+		});
+	});
+	// Without id and class div
+	/*$(document).ready(function(){
+		$("video").hover(function(){
+			$(this)[0].play();
+		},
+		function(){
+		$(this)[0].pause();
+		});
+	});*/
+	</script>
+	
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	
+	  
+	
+	<script>
+  AOS.init();
+</script>
+</body>
+</html>

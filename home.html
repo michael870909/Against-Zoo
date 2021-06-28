@@ -1,0 +1,553 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body{
+		margin: 0px;
+		padding: 0px;
+		margin-left: auto;
+		margin-right: auto;
+		overflow-x:hidden;
+		height: 2500px;
+	}
+	header{
+		position: fixed;
+		width: 100%;
+		z-index: 100;
+		height: 50px;
+	}
+	.logo{
+		position: fixed;
+		left: 0;
+		z-index: 101;
+		margin-left: 2em;
+		margin-top: 1.5em;
+		cursor: pointer;
+	}
+	.menu-btn{
+		position: fixed;
+		right: 0;
+		z-index: 101;
+		margin-right: 2em;
+		margin-top: 1em;
+	}
+	input#menu{
+		display: none;
+	}
+	.overlay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all ease 0.5s;
+    background-image: url(image/menu_bg.png);
+	background-size: cover;
+	}
+	.overlay ul li{
+		display: inline-block;
+		width: 100%;
+	}
+	.overlay ul li a{
+		display: block;
+		width: 100%;
+		color: #FFF;
+		text-decoration: none;
+		font-size: 28px;
+		padding: 25px 0;
+		text-align: center;
+		text-transform: uppercase;
+		transition: all ease 0.5s; 
+	}
+	.overlay ul li a:hover{
+		color: rgba(229,38,42,1.00);	
+	}
+	input[type="checkbox"]:checked ~ .overlay{
+		opacity: 1;
+		transform: scale(1) translateX(0px); 
+	}
+
+	.btn{
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		top:0;
+		right:0;
+		cursor: pointer;
+		z-index: 100;
+		transition: .5s;
+	}
+	.btn span{
+		position: absolute;
+		display: block;
+		height: 4px;
+		background: #9d9d9d;
+		width: 60%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		transition: .5s;
+	}
+	.btn span:nth-child(1){
+		top:30%;
+	}
+	.btn span:nth-child(3){
+		top:70%;
+	}
+	.btn.active span:nth-child(1){
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%) rotate(45deg);
+		background: rgba(229,38,42,1.00);
+	}
+	.btn.active span:nth-child(3){
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%) rotate(-45deg);
+		background: rgba(229,38,42,1.00);
+	}
+	.btn.active span:nth-child(2){
+	    opacity: 0;
+	}
+	.contact{
+		margin-top: 3em;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.contact img{
+		margin-left: 2em;
+		margin-right: 2em;
+		opacity: .5;
+		transition: .5s ease;
+		
+	}
+	.contact a:hover img{	
+		opacity: 1;
+		transform: scale(1.1);
+	}
+	section{
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	section img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+	section::before{
+		content: '';
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 100px;
+		z-index: 5;
+	}
+	section::after{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100px;
+		z-index: 5;
+	}
+	#title{
+        z-index: 1;
+	}
+	#plain{
+		z-index: 2;
+	}
+	#front{
+		z-index: 3;
+	}
+	h2{
+        font-family: "Microsoft JhengHei";
+        font-size: 50px;
+        color: rgba(87,11,6,1.00);
+        font-style: normal;
+	}
+	h3{
+		font-family: "arial";
+        font-size: 20px;
+        color: rgba(87,11,6,1.00);
+        font-weight: 700;
+        font-style: normal;
+		letter-spacing: 9px;
+	}
+	.intro-title{
+		text-align: center;
+		line-height: 25px;
+		margin-top: 7em;
+		margin-bottom: 3em;
+	}
+	.heading{
+		font-size: 25px;
+		margin-top: 30px;
+		margin-left: 30px;
+	}
+	.para1{
+		font-size: 15px;
+		font-family: "Microsoft JhengHei";
+		line-height: 25px;
+		margin: 30px;
+		margin-top: 20px;
+	}
+	#container{
+		margin: 0px;
+		padding: 0px;
+		margin-left: auto;
+		margin-right: auto;
+        margin-bottom: 30px;
+	}
+	.intro-content{
+	    margin: 0px;
+		padding: 0px;
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+	.card{
+        display: flex;
+        justify-content: center;
+        height: 550px;
+        background-image: url(image/stripe.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		margin: 2em;
+	}
+	.img1{
+		height: 450px;
+		box-shadow: 0px 10px 30px #9d9d9d;
+	}
+
+	.intro-text{
+		width: 250px;
+        height: 450px;
+        background-color: rgba(205,104,14,1.00);
+		color: #FFF;
+		z-index: 3;
+		box-shadow: 0px 10px 20px #9d9d9d;
+	}
+	.intro-text2{
+    width: 250px;
+    height: 450px;
+    color: #FFF;
+    z-index: 3;
+    box-shadow: 0px 10px 20px #9d9d9d;
+    background-color: rgba(217,64,66,1.00);
+	}
+	.intro-text3{
+    width: 250px;
+    height: 450px;
+    background-color: rgba(191,146,19,1.00);
+    color: #FFF;
+    z-index: 3;
+    box-shadow: 0px 10px 20px #9d9d9d;
+	}
+	.history img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: contain;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+	.box{
+			position: absolute;
+			top: 90%;
+            left: 50%;
+			transform: translate(-50% -50%);
+			z-index: 6;
+		}
+		.box span{
+			display: block;
+			width: 15px;
+			height: 15px;
+			border-bottom: 3px solid #fff;
+			border-right: 3px solid #fff;
+			transform: rotate(45deg);
+			animation: animate 2s infinite;
+			margin: -10px;
+		}
+		.box span:nth-child(2){
+			animation-delay: -0.2s;
+		}
+		.box span:nth-child(3){
+			animation-delay: -0.4s;
+		}
+		@keyframes animate
+		{
+			0%
+			{
+			   opacity: 0;
+			   transform: rotate(45deg) translate(-10px,-10px)   
+			}
+			50%
+			{
+			   opacity: 1;
+			}
+			100%
+			{
+			   opacity: 0;	
+			   transform: rotate(45deg) translate(10px,10px)
+			}
+		}
+		.scroll-text{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 85%;
+    z-index: 6;
+    font-size: 15px;
+    font-family: Arial;
+    color: #FFF;
+    letter-spacing: 2px;
+    font-style: normal;
+		}
+	.footer{
+		margin-top: 100px;
+		width: 100%;
+		height: 100px;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		background: #605e60;
+		padding-top: 50px;
+		padding-bottom: 30px;
+		color: #FFF
+	}
+	.para4{
+		margin-bottom: 30px;
+		
+	}
+	.ft{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	}
+	.border{
+		border-right: 1px solid #FFF;
+	}
+	
+
+</style>	
+
+	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	
+<script type="text/javascript">
+       $(document).ready(function(){
+    $('.btn').click(function(){
+	   $('.btn').toggleClass('active');
+	})
+  })
+	
+</script>
+
+	
+
+	
+</head>
+
+<body>
+	
+  <header>
+	<div class="logo"> <a href="home.html"><img src="image/logo.png" width="50"  alt=""/></a> </div>	
+	
+	<label for="menu" class="menu-btn">
+	       <div class="btn"> 
+		       <span></span>
+			   <span></span>
+			   <span></span>
+		
+		  </div>
+	
+		</label>
+	
+	<input type="checkbox" id="menu" name="">
+		
+		<div class="overlay">
+		    <ul>
+			    <li><a href="home.html">首頁</a></li>
+				<li><a href="page2.html">為何反對</a></li>
+				<li><a href="video.html">相關影音</a></li>
+				<li><a href="countersign.html">募資計畫</a></li>
+			</ul>
+			<div class="contact">
+				<a href="#"><img src="image/ig.png" alt=""></a>
+			<a href="#"><img src="image/fb.png" alt=""></a>
+			<a href="#"><img src="image/twitter.png" alt=""></a>
+			</div>
+		</div>
+</header>
+
+	<div class="box2">
+	<div class="scroll-text">
+	   <h5>SCROLL</h5>
+	</div>
+	</div>
+	
+	<div class="box">
+		
+	     <span></span>
+	     <span></span>
+	     <span></span>
+	</div>
+	
+	<section>
+	  <img src="image/bg.png" id="bg" alt="">
+	  <img src="image/bird.png" id="bird" alt="">
+	  <img src="image/sun.png" id="sun" alt="">
+	  <img src="image/mt.png" id="mt" alt="">
+	  <img src="image/plain.png" id="plain" alt="">
+	  <img src="image/front.png" id="front" alt="">
+      <img src="image/title.png" id="title" alt="">
+	</section>
+	
+	<script type="text/javascript">
+	let bg = document.getElementById("bg");
+	document.getElementById("sun");
+    document.getElementById("mt");
+	document.getElementById("plain");
+	document.getElementById("front");
+	document.getElementById("title");
+	
+    window.addEventListener('scroll',
+	function(){
+		var value = window.scrollY;
+		bg.style.top = value *0.5 + 'px';
+		bird.style.left = -value *0.5 + 'px';
+		bird.style.top = -value *0.3 + 'px';
+		sun.style.top = value *0.7 + 'px';
+		mt.style.top = -value *0.15 + 'px';
+		plain.style.left = -value *0.15 + 'px';
+		front.style.top = value *0.15 + 'px';
+		front.style.left = value *0.15 + 'px';
+		title.style.top = value *1 + 'px';
+	})
+	</script>
+	
+ 
+	
+	  <div class="intro-title" data-aos="fade-up" data-aos-duration="500">
+		<h2>動物園怎麼了</h2><br>
+		<h3>WHAT HAPPENED</h3>
+	  </div>
+	  
+	  <div id="container">
+	
+		  <div class="intro-content">
+		      
+			 
+			  
+			  <div class="card" >
+				  
+			  <div class="img1" data-aos="fade-right" data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+			  <img src="image/elephant_die.jpg" height="450" alt=""/> </div>
+		
+				  
+			  	  
+			  <div class="intro-text" data-aos="fade-left" data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+			  
+			  <h2 class="heading">慢性病、短命</h2>
+			  <p class="para1">圈養在動物園的大象都患上了不同程度的關節炎和慢性足部疾病，因為它們走路太少，也沒走在適宜的材質上。據研究表明動物園內的大多數圈養出生的雌性亞洲象平均能活十九年，但是在緬甸天天被驅趕勞作的大象都能活到十四歲，壽命至少是動物園大象的兩倍。</p>
+			  
+			  </div>
+				  
+	          </div>
+			  
+			   <div class="card">
+				  
+			  <div class="intro-text2" data-aos="fade-right" data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+			  
+			  <h2 class="heading">規癖行為</h2>
+			  <p class="para1"> 就是非正常、重複性強、無明確目的的行為，如無意義且無聊的走來走去，搖頭晃腦。縱然現在的動物園改進了不少，但是現在還是會出現這種現象，這不是一段過去的歷史。在野外很難見到規癖行為，動物園裡卻很常見。一份2004年的牛津大學研究報告稱約80%的肉食動物在圈養狀態下回出現規癖行為。</p>
+			  
+			  </div>
+				   
+			  <div class="img1" data-aos="fade-left" data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+			  <img src="image/polar_bear.png" height="450" alt=""/> </div>
+				  
+	          </div>
+			  
+			   <div class="card">
+				  
+			  <div class="img1" data-aos="fade-right" data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+			  <img src="image/whale2.png" height="450" alt=""/> </div>
+		
+				  
+			  	  
+			  <div class="intro-text3" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+			  
+			  <h2 class="heading">攻擊人類</h2>
+			  <p class="para1">一頭雌性虎鯨攻擊訓鯨員致其死亡，近幾年被報導出來的圈養的虎鯨已經殺了三個人。那麼海洋世界裡虎鯨歡樂表演的背後是否真正能夠滿足它們最基本的需求才會使它們正常健康的生活繁殖？事實表明圈養的虎鯨都跟大象遇到了同樣的問題，疾病頻發、壽命縮短。野外的虎鯨一天要游160千米，它們經歷了千年的進化，自然選擇就是如此，這些動物需要游這麼遠來保持健康。</p>
+			  
+			  </div>
+				  
+	          </div>
+			  
+			 
+		  </div>
+		  
+		  
+		  
+		  
+		  
+	  </div>
+<div class="footer">
+		  
+		  
+  <div class="para4">
+		  Copyright © 2020 - AGAINST ZOO
+	  </div>
+		  
+		  <table class="ft" width="700" border="0" align="center" cellpadding="０" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="border" width="165" style="text-align: center">關於我們</td>
+      <td class="border" width="165" style="text-align: center">隱私政策</td>
+      <td class="border" width="165" style="text-align: center">版權聲明</td>
+      <td  width="205" style="text-align: center">野生動物急救站</td>
+    </tr>
+  </tbody>
+</table>
+		  
+		  
+</div>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+  AOS.init();
+</script>
+</body>
+</html>
